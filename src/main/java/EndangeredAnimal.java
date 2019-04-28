@@ -1,3 +1,6 @@
+import org.sql2o.*;
+import java.util.List;
+
 public class EndangeredAnimal {
     private  String health;
     private  String age;
@@ -14,5 +17,21 @@ public class EndangeredAnimal {
         super(name, endangered);
         this.health = health;
         this.age = age;
+    }
+    public String getHealth() {
+        return health;
+    }
+
+    public String getAge() {
+        return age;
+    }
+    public static EndangeredAnimal find(int id) {
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "SELECT * FROM animals WHERE id=:id";
+            EndangeredAnimal blog = con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(EndangeredAnimal.class);
+            return blog;
+        }
     }
 }

@@ -1,7 +1,6 @@
 import org.sql2o.*;
-import java.util.List;
 
-public class EndangeredAnimal {
+public class Endangered extends Animal {
     private  String health;
     private  String age;
 
@@ -13,7 +12,7 @@ public class EndangeredAnimal {
     public static final String AGE_YOUNG = "young";
     public static final String AGE_ADULT = "adult";
 
-    public EndangeredAnimal(String name, String endangered, String health, String age) {
+    public Endangered(String name, String endangered, String health, String age) {
         super(name, endangered);
         this.health = health;
         this.age = age;
@@ -25,12 +24,12 @@ public class EndangeredAnimal {
     public String getAge() {
         return age;
     }
-    public static EndangeredAnimal find(int id) {
+    public static Endangered find(int id) {
         try(Connection con = DB.sql2o.open()) {
             String sql = "SELECT * FROM animals WHERE id=:id";
-            EndangeredAnimal blog = con.createQuery(sql)
+            Endangered blog = con.createQuery(sql)
                     .addParameter("id", id)
-                    .executeAndFetchFirst(EndangeredAnimal.class);
+                    .executeAndFetchFirst(Endangered.class);
             return blog;
         }
     }

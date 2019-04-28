@@ -37,12 +37,12 @@ public class Animal {
         }
     }
     public void setEndangered(String endangered, String health, String age) {
-        if ((!health.equals(EndangeredAnimal.HEALTH_ILL)
-                && !health.equals(EndangeredAnimal.HEALTH_OKAY)
-                && !health.equals(EndangeredAnimal.HEALTH_HEALTHY))
-                || (!age.equals(EndangeredAnimal.AGE_NEWBORN)
-                && !age.equals(EndangeredAnimal.AGE_YOUNG)
-                && !age.equals(EndangeredAnimal.AGE_ADULT))) {
+        if ((!health.equals(Endangered.HEALTH_ILL)
+                && !health.equals(Endangered.HEALTH_OKAY)
+                && !health.equals(Endangered.HEALTH_HEALTHY))
+                || (!age.equals(Endangered.AGE_NEWBORN)
+                && !age.equals(Endangered.AGE_YOUNG)
+                && !age.equals(Endangered.AGE_ADULT))) {
             throw new IllegalArgumentException("Please choose from ill, okay, healthy or newborn, young, adult");
         }
         try(Connection con = DB.sql2o.open()) {

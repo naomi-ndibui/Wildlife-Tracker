@@ -10,5 +10,9 @@ public class EndangeredAnimal {
     public static final String AGE_YOUNG = "young";
     public static final String AGE_ADULT = "adult";
 
-
+    public EndangeredAnimal(String name, String endangered, String health, String age) {
+        super(name, endangered);
+        this.health = health;
+        this.age = age;
+    }
 }

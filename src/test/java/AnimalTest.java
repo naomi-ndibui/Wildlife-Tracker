@@ -6,7 +6,7 @@ public class AnimalTest {
 
     @Rule
     public DatabaseRule database = new DatabaseRule();
-    
+
     @Test
     public void animal_instantiatesCorrectly_true() {
         Animal testAnimal = animal1;

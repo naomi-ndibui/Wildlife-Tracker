@@ -34,5 +34,32 @@ public class Animal {
                     .getKey();
         }
     }
-
+    public void setEndangered(String endangered, String health, String age) {
+        if ((!health.equals(EndangeredAnimal.HEALTH_ILL)
+                && !health.equals(EndangeredAnimal.HEALTH_OKAY)
+                && !health.equals(EndangeredAnimal.HEALTH_HEALTHY))
+                || (!age.equals(EndangeredAnimal.AGE_NEWBORN)
+                && !age.equals(EndangeredAnimal.AGE_YOUNG)
+                && !age.equals(EndangeredAnimal.AGE_ADULT))) {
+            throw new IllegalArgumentException("Please choose from ill, okay, healthy or newborn, young, adult");
+        }
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "UPDATE animals SET endangered = :endangered, health = :health, age = :age WHERE id = :id";
+            con.createQuery(sql)
+                    .addParameter("endangered", endangered)
+                    .addParameter("health", health)
+                    .addParameter("age", age)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }
+    }
+    @Override
+    public boolean equals(Object otherAnimal) {
+        if (!(otherAnimal instanceof Animal)) {
+            return false;
+        } else {
+            Animal newAnimal = (Animal) otherAnimal;
+            return this.getName().equals(newAnimal.getName());
+        }
+    }
 }

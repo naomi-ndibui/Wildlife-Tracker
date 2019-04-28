@@ -1,8 +1,9 @@
 import org.junit.*;
-
 import static org.junit.Assert.*;
 
 public class AnimalTest {
+    Animal animal1 = new Animal("koala","No");
+    Animal animal2 = new Animal("cat","No");
 
     @Rule
     public DatabaseRule database = new DatabaseRule();
@@ -58,5 +59,9 @@ public class AnimalTest {
         secondAnimal.save();
         assertEquals(Animal.find(secondAnimal.getId()), secondAnimal);
     }
-
+    @Test(expected = IllegalArgumentException.class)
+    public void save_throwsExceptionIfNameIsEmpty() {
+        Animal myAnimal = new Animal("", "no");
+        myAnimal.save();
+    }
 }

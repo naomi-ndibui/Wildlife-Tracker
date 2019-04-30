@@ -65,7 +65,7 @@ public class Animal {
         }
     }
     public static List<Animal> all() {
-        String sql = "select * from animals";
+        String sql = "select id, name, endangered from animals";
         try(Connection con = DB.sql2o.open()) {
             return con.createQuery(sql)
                     .throwOnMappingFailure(false)
@@ -74,11 +74,11 @@ public class Animal {
     }
     public static Animal find(int id) {
         try(Connection con = DB.sql2o.open()) {
-            String sql = "SELECT * FROM animals WHERE id=:id";
-            Animal blog = con.createQuery(sql)
+            String sql = "SELECT id, name, endangered FROM animals WHERE id=:id";
+            Animal animal = con.createQuery(sql)
                     .addParameter("id", id)
                     .executeAndFetchFirst(Animal.class);
-            return blog;
+            return animal;
         }
     }
     public static String getAnimalName(int id) {

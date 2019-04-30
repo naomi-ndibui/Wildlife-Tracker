@@ -1,0 +1,23 @@
+body{
+background-image:url("http://1.bp.blogspot.com/-n-Tm2-Eq3z8/UmZnh1Lq9AI/AAAAAAAAAn4/qVHv0MddpUM/s1600/1600x1200-dark-amazon-forest-hd-desktop-wallpaper.jpg");
+background-repeat:no-repeat;
+  background-size: cover;
+  font-weight: bold;
+  font-family:Roboto;
+  color:white;
+  text-shadow:0px 0px 5px black;
+  }
+
+  table th{
+  font-style:bold;
+  text-shadow:0px 0px 9px black;
+  background-color:silver;
+
+  }
+   table td{
+     background-color:black;
+     opacity:0.8;
+}
+h1{
+font-family:Bree Serif;
+}

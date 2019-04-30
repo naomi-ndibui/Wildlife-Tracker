@@ -10,7 +10,7 @@ public class AnimalTest {
 
     @Test
     public void animal_instantiatesCorrectly_true() {
-        Animal testAnimal = animal1;
+        Animal testAnimal = animal1;;
         assertEquals(true, testAnimal instanceof Animal);
     }
     @Test
@@ -39,8 +39,8 @@ public class AnimalTest {
     public void save_assignsIdToAnimal() {
         Animal testAnimal = animal1;
         testAnimal.save();
-        Animal savedAnimal = Animal.all().get(0);
-        assertEquals(savedAnimal.getId(), testAnimal.getId());
+        assertNotEquals(0, testAnimal.getId());
+
     }
     @Test
     public void all_returnsAllInstancesOfAnimal_true() {
@@ -48,8 +48,8 @@ public class AnimalTest {
         firstAnimal.save();
         Animal secondAnimal = animal2;
         secondAnimal.save();
-        assertEquals(true, Animal.all().get(0).equals(firstAnimal));
-        assertEquals(true, Animal.all().get(1).equals(secondAnimal));
+        assertEquals(true, Animal.all().contains(firstAnimal));
+        assertEquals(true, Animal.all().contains(secondAnimal));
     }
     @Test
     public void find_returnsAnimalWithSameId_secondAnimal() {

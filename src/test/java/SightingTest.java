@@ -37,6 +37,36 @@ public class SightingTest {
     }
 
     @Test
+    public void getSightedAnimalName_returnsAnimalName_koala() {
+        Sighting testSighting = sighting1;
+        assertEquals("koala", testSighting.getSightedAnimalName());
+    }
+
+    @Test
+    public void getSightedAnimalEndangeredStatus_returnsAnimalEndangeredStatus_No() {
+        Sighting testSighting = sighting1;
+        assertEquals("No", testSighting.getSightedAnimalEndangeredStatus());
+    }
+
+    @Test
+    public void getSightedAnimalHealth_returnsAnimalHealth_ill() {
+        Endangered myEndangered = new Endangered("Chipmunk", "no", "healthy", "young");
+        myEndangered.save();
+        myEndangered.setEndangered("yes", "ill", "newborn");
+        Sighting chipmunkSighting = new Sighting("Naomi", "Zone C", myEndangered.getId());
+        assertEquals("ill", chipmunkSighting.getSightedAnimalHealth());
+    }
+
+    @Test
+    public void getSightedAnimalAge_returnsAnimalAge_adult() {
+        Endangered myEndangered = new Endangered("Gazelle", "no", "healthy", "young");
+        myEndangered.save();
+        myEndangered.setEndangered("yes", "okay", "adult");
+        Sighting chipmunkSighting = new Sighting("Naomi", "Zone A", myEndangered.getId());
+        assertEquals("adult", chipmunkSighting.getSightedAnimalAge());
+    }
+
+    @Test
     public void equals_returnsTrueIfNameAndLocationAreSame_true() {
         Sighting testSighting = sighting1;
         Sighting anotherSighting = sighting1;
@@ -54,8 +84,7 @@ public class SightingTest {
     public void save_assignsIdToSighting() {
         Sighting testSighting = sighting1;
         testSighting.save();
-        Sighting savedSighting = Sighting.all().get(0);
-        assertEquals(savedSighting.getId(), testSighting.getId());
+        assertNotEquals(0, testSighting.getId());
     }
 
     @Test
@@ -64,8 +93,8 @@ public class SightingTest {
         firstSighting.save();
         Sighting secondSighting = sighting2;
         secondSighting.save();
-        assertEquals(true, Sighting.all().get(0).equals(firstSighting));
-        assertEquals(true, Sighting.all().get(1).equals(secondSighting));
+        assertEquals(true, Sighting.all().contains(firstSighting));
+        assertEquals(true, Sighting.all().contains(secondSighting));
     }
 
     @Test

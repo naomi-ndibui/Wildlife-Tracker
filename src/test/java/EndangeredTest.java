@@ -45,15 +45,14 @@ public class EndangeredTest {
     public void save_insertsObjectIntoDatabase_EndangeredAnimal() {
         Endangered testEndangered = endangered1;
         testEndangered.save();
-        assertEquals(true, Animal.all().get(0).equals(testEndangered));
+        assertEquals(true, Animal.all().contains(testEndangered));
     }
 
     @Test
     public void save_assignsIdToEndangeredAnimal() {
         Endangered testEndangered = endangered1;
         testEndangered.save();
-        Animal savedEndangeredAnimal = Animal.all().get(0);
-        assertEquals(savedEndangeredAnimal.getId(), testEndangered.getId());
+        assertNotEquals(0, testEndangered.getId());
     }
 
     @Test
@@ -62,8 +61,8 @@ public class EndangeredTest {
         firstEndangered.save();
         Endangered secondEndangered = endangered2;
         secondEndangered.save();
-        assertEquals(true, Animal.all().get(0).equals(firstEndangered));
-        assertEquals(true, Animal.all().get(1).equals(secondEndangered));
+        assertEquals(true, Animal.all().contains(firstEndangered));
+        assertEquals(true, Animal.all().contains(secondEndangered));
     }
 
     @Test

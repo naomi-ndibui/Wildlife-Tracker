@@ -1,5 +1,7 @@
 import org.sql2o.*;
 
+import java.util.List;
+
 public class Endangered extends Animal {
     private  String health;
     private  String age;
@@ -18,12 +20,14 @@ public class Endangered extends Animal {
         this.age = age;
     }
     public String getHealth() {
+
         return health;
     }
 
     public String getAge() {
         return age;
     }
+
     public static Endangered find(int id) {
         try(Connection con = DB.sql2o.open()) {
             String sql = "SELECT * FROM animals WHERE id=:id";

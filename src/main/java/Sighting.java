@@ -35,6 +35,26 @@ public class Sighting {
         return id;
     }
 
+    public String getSightedAnimalName() {
+        Endangered animal = Endangered.find(animal_id);
+        return animal.name;
+    }
+
+    public String getSightedAnimalEndangeredStatus() {
+        Endangered animal = Endangered.find(animal_id);
+        return animal.endangered;
+    }
+
+    public String getSightedAnimalHealth() {
+        Endangered animal = Endangered.find(animal_id);
+        return animal.getHealth();
+    }
+
+    public String getSightedAnimalAge() {
+        Endangered animal = Endangered.find(animal_id);
+        return animal.getAge();
+    }
+
     public void save() {
         try(Connection con = DB.sql2o.open()) {
             String sql = "INSERT INTO sightings (ranger_name, location, animal_id, timestamp) VALUES (:ranger_name, :location, :animal_id, now())";

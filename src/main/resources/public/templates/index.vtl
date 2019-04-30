@@ -1,4 +1,5 @@
-<div class="panel-group">
+<div class="row">
+<div class="panel-group col-md-4">
   <div class="panel panel-info">
     <div class="panel-heading">
       <h2 class="panel-title">
@@ -13,7 +14,7 @@
             <input id="ranger_name" name="ranger_name" type="text" class="form-control" required>
             <div class="form-group">
               <label for="location">Location:</label>
-              <select id="location" name="location" type="text">
+              <select id="location" name="location" class="form-control" type="text">
                 <option value="Zone A">Zone A</option>
                 <option value="Zone B">Zone B</option>
                 <option value="Zone C">Zone C</option>
@@ -24,18 +25,18 @@
             <label for="name">Animal Name</label>
             <input id="name" name="name" type="text" class="form-control">
             <label for="endangered">Endangered</label>
-            <select id="endangered" name="endangered" type="text">
+            <select id="endangered" class="form-control" name="endangered" type="text">
                <option value="yes">yes</option>
                <option value="no">no</option>
             </select>
             <label for="health">Animal Health</label>
-            <select id="health" name="health" type="text">
+            <select id="health" class="form-control" name="health" type="text">
                 <option value="ill">ill</option>
                 <option value="okay">okay</option>
                 <option value="healthy">healthy</option>
             </select>
             <label for="age">Animal Age</label>
-             <select id="age" name="age" type="text">
+             <select id="age" class="form-control" name="age" type="text">
                   <option value="newborn">newborn</option>
                   <option value="young">young</option>
                   <option value="adult">adult</option>
@@ -48,7 +49,7 @@
   </div>
 </div>
 
-<div class="panel panel-info">
+<div class="panel panel-info col-md-8">
   <div class="panel-heading">
     <h2 class="panel-title">Sightings</h2>
   </div>
@@ -99,4 +100,5 @@
       </tbody>
     </table>
   </div>
+</div>
 </div>

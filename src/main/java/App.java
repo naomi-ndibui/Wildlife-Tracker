@@ -1,6 +1,5 @@
+//import org.apache.log4j.BasicConfigurator;
 import spark.ModelAndView;
-import java.util.List;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import spark.template.velocity.VelocityTemplateEngine;
@@ -8,13 +7,28 @@ import static spark.Spark.*;
 
 public class App {
     public static void main(String[] args) {
+
+        ProcessBuilder process = new ProcessBuilder();
+        Integer port;
+
+
+        if (process.environment().get("PORT") != null) {
+            port = Integer.parseInt(process.environment().get("PORT"));
+        } else {
+            port = 4567;
+        }
+
+        port(port);
+
+//        BasicConfigurator.configure();
+
         staticFileLocation("/public");
         String layout = "public/templates/layout.vtl";
 
         get("/", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
-        model.put("sightings", Sighting.all());
-        model.put("animals", Animal.all());
+            model.put("sightings", Sighting.all());
+            model.put("animals", Animal.all());
             model.put("template", "public/templates/index.vtl");
             return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());

@@ -29,7 +29,7 @@
                <option value="no">no</option>
             </select>
             <label for="health">Animal Health</label>
-            <select id="health" name="Animal Health" type="text">
+            <select id="health" name="health" type="text">
                 <option value="ill">ill</option>
                 <option value="okay">okay</option>
                 <option value="healthy">healthy</option>
@@ -55,13 +55,13 @@
   <div class="panel-body">
     <table class="table table-striped">
       <thead>
-        <th class="col-xs-1">Ranger Name:</th>
-        <th class="col-xs-1">Location:</th>
-        <th class="col-xs-1">Animal:</th>
+        <th class="col-xs-1">Ranger Name</th>
+        <th class="col-xs-1">Location</th>
+        <th class="col-xs-1">Animal</th>
         <th class="col-xs-1">Endangered?</th>
-        <th class="col-xs-1">Health:</th>
-        <th class="col-xs-1">Age:</th>
-        <th class="col-xs-1">Timestamp:</th>
+        <th class="col-xs-1">Health</th>
+        <th class="col-xs-1">Age</th>
+        <th class="col-xs-1">Timestamp</th>
       </thead>
       <tbody>
         #foreach ($sighting in $sightings)
@@ -69,26 +69,26 @@
             <td>$sighting.getRangerName()</td>
             <td>$sighting.getLocation()</td>
 
-            #if ($AnimalClass.getAnimalName($sighting.getAnimalId()))
-              <td>$AnimalClass.getAnimalName($sighting.getAnimalId())</td>
+            #if ($sighting.getAnimalId())
+              <td>$sighting.getSightedAnimalName()</td>
+            #else
+               <td></td>
+            #end
+
+            #if ($sighting.getAnimalId())
+              <td>$sighting.getSightedAnimalEndangeredStatus()</td>
             #else
               <td></td>
             #end
 
-            #if ($AnimalClass.getAnimalEndangered($sighting.getAnimalId()))
-              <td>$AnimalClass.getAnimalEndangered($sighting.getAnimalId())</td>
+            #if ($sighting.getAnimalId())
+              <td>$sighting.getSightedAnimalHealth()</td>
             #else
               <td></td>
             #end
 
-            #if ($AnimalClass.getAnimalHealth($sighting.getAnimalId()))
-              <td>$AnimalClass.getAnimalHealth($sighting.getAnimalId())</td>
-            #else
-              <td></td>
-            #end
-
-            #if ($AnimalClass.getAnimalAge($sighting.getAnimalId()))
-              <td>$AnimalClass.getAnimalAge($sighting.getAnimalId())</td>
+            #if ($sighting.getAnimalId())
+              <td>$sighting.getSightedAnimalAge()</td>
             #else
               <td></td>
             #end
